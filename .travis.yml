@@ -14,3 +14,11 @@ after_success:
   - docker build -t vit271202/multi-nginx ./client
   - docker build -t vit271202/multi-server ./server
   - docker build -t vit271202/multi-worker ./worker
+  # Login to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push vit271202/multi-client
+  - docker push vit271202/multi-nginx
+  - docker push vit271202/multi-server
+  - docker push vit271202/multi-worker
+  
