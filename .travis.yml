@@ -1,0 +1,16 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t vit271202/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run vit271202/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t vit271202/multi-client ./client
+  - docker build -t vit271202/multi-nginx ./client
+  - docker build -t vit271202/multi-server ./server
+  - docker build -t vit271202/multi-worker ./worker
