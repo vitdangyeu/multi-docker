@@ -11,7 +11,7 @@ script:
 
 after_success:
   - docker build -t vit271202/multi-client ./client
-  - docker build -t vit271202/multi-nginx ./client
+  - docker build -t vit271202/multi-nginx ./nginx
   - docker build -t vit271202/multi-server ./server
   - docker build -t vit271202/multi-worker ./worker
   # Login to the docker CLI
